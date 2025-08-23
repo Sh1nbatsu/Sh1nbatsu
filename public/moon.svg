@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
+  <defs>
+    <style>
+      :root {
+        --moon-core-color: #5c91bf;
+        --moon-color: #6ba4d9;
+        --moon-crater-color: #5c91bf;
+        --moon-crater-deep-color: #ffffffff;
+      }
+    </style>
+    <filter id="moon-glow">
+      <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <clipPath id="moon-clip">
+      <circle cx="60" cy="60" r="40"/>
+    </clipPath>
+  </defs>
+  <circle 
+    cx="60" 
+    cy="60" 
+    r="40" 
+    fill="var(--moon-color, #6ba4d9)" 
+    filter="url(#moon-glow)"
+  />
+  <circle cx="20" cy="40" r="35" fill="var(--moon-core-color)" clip-path="url(#moon-clip)"/>
+  <circle cx="75" cy="50" r="12" fill="var(--moon-crater-color)"/>
+  <circle cx="50" cy="70" r="5" fill="var(--moon-crater-color)" opacity="0.8"/>
+  <circle cx="65" cy="80" r="3" fill="var(--moon-crater-deep-color)" opacity="0.7"/>
+</svg>

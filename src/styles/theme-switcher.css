@@ -1,0 +1,120 @@
+.theme-switcher {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  position: relative;
+  width: 100px;
+  height: 45px;
+  background-color: var(--secondary-color);
+  border-radius: 999px;
+  padding: 2px;
+}
+
+.theme-switcher svg {
+  display: inline-block;
+  vertical-align: middle;
+  width: 32px;
+  height: 32px;
+}
+
+.sun-block {
+  height: 40px;
+  width: 40px;
+  padding: 4px;
+  border-radius: 999px;
+  background: var(--secondary-color);
+  cursor: pointer;
+  transition: filter 500ms ease-out;
+}
+
+.sun-block svg {
+  transition: filter 500ms ease-out;
+  transition-delay: 200ms;
+}
+
+.moon-block {
+  height: 40px;
+  width: 40px;
+  padding: 4px;
+  border-radius: 999px;
+  background: var(--secondary-color);
+}
+
+.moon-block svg {
+  transform: scale(1.4);
+  filter: drop-shadow(0 0 5px #7e7e7e) drop-shadow(0 0 8px #818181)
+    drop-shadow(0 0 10px #000);
+  transition: filter 200ms ease-out;
+}
+
+.slider {
+  width: 40px;
+  height: 40px;
+  content: "";
+  background-color: rgba(13, 115, 119, 0.5);
+  border-radius: 999px;
+  position: absolute;
+  translate: -24px 0;
+  z-index: -1;
+}
+
+.cloud1 {
+  transition: translate 300ms ease-out;
+  top: -3px;
+  left: 0px;
+  position: absolute;
+  transform: scale(1.6);
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.cloud2 {
+  transition: translate 300ms ease-out;
+  top: -1px;
+  left: 18px;
+  position: absolute;
+  transform: scaleX(-1);
+  transform: scale(1.4);
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+.cloud3 {
+  transition: translate 300ms ease-out;
+  top: 12px;
+  left: 8px;
+  position: absolute;
+  transform: scale(1.6);
+  opacity: 0.9;
+  pointer-events: none;
+}
+
+[data-theme="light"] {
+  .cloud1 {
+    translate: 60px 0px;
+  }
+
+  .cloud2 {
+    translate: 50px 6px;
+  }
+  .cloud3 {
+    translate: 50px 0px;
+  }
+
+  .sun-block {
+    cursor: default;
+  }
+
+  .moon-block {
+    cursor: pointer;
+  }
+
+  .sun-block svg {
+    filter: drop-shadow(0 0 5px #fff) drop-shadow(0 0 8px #fff)
+      drop-shadow(0 0 10px #000);
+  }
+
+  .moon-block svg {
+    filter: none;
+  }
+}

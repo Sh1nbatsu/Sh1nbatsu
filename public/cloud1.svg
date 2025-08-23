@@ -1,0 +1,15 @@
+<svg width="128" height="128" viewBox="0 0 24 24" id="cloud" xmlns="http://www.w3.org/2000/svg" class="icon multi-color" style="opacity: 1">
+<defs>
+  <style>
+    :root {
+      --cloud-fill: #b7b7b7;
+      --cloud-fill-alt: #fff;
+      --cloud-stroke: #000;
+    }
+  </style>
+</defs>
+<g transform="scale(-1, 1) translate(-24, 0)">
+<path id="primary-stroke" d="M21,13a3.76,3.76,0,0,1-.3,1.5A4,4,0,0,1,17,17H6a3,3,0,1,1,1.08-5.79,5,5,0,0,1,9-2.09A4.08,4.08,0,0,1,17,9,4,4,0,0,1,21,13Z" style="fill: var(--cloud-fill-alt); stroke: var(--cloud-stroke); stroke-linecap: round; stroke-linejoin: round; stroke-width: 0.7;"></path>
+<path id="tertiary-fill" d="M20.7,14.5A4,4,0,0,1,17,17H6a3,3,0,0,1-2.6-1.5,3,3,0,0,1,3.68-1.29,5,5,0,0,1,9-2.09A4.08,4.08,0,0,1,17,12,4,4,0,0,1,20.7,14.5Z" style="fill: var(--cloud-fill); stroke-width: 2;"></path>
+</g>
+</svg>

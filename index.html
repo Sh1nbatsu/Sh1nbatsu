@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + TS</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      (function () {
+        try {
+          if (localStorage.getItem("animationPlayed") === "true") {
+            document.documentElement.classList.add("no-initial");
+          }
+          const savedTheme = localStorage.getItem("theme");
+          if (savedTheme) {
+            document.documentElement.setAttribute("data-theme", savedTheme);
+          } else if (
+            window.matchMedia &&
+            window.matchMedia("(prefers-color-scheme: light)").matches
+          ) {
+            document.documentElement.setAttribute("data-theme", "light");
+          } else {
+            document.documentElement.setAttribute("data-theme", "dark");
+          }
+        } catch (e) {
+          console.log("An error has occured", e);
+        }
+      })();
+    </script>
+    <link rel="stylesheet" href="./src/styles/main.css" />
+    <script type="module" src="./src/index.ts"></script>
+  </head>
+  <body data-lang="en">
+    <div class="svg-container">
+      <svg
+        id="sun-svg"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 128 128"
+        width="32"
+        height="32"
+      >
+        <defs>
+          <clipPath id="coreClip">
+            <circle cx="64" cy="64" r="36" />
+          </clipPath>
+          <g id="ray">
+            <rect
+              x="60"
+              y="6"
+              width="8"
+              height="18"
+              rx="4"
+              ry="4"
+              fill="var(--sun-ray)"
+              opacity="0.7"
+            />
+          </g>
+          <filter id="sun-glow">
+            <feGaussianBlur stdDeviation="6" result="coloredBlur" />
+            <feMerge>
+              <feMergeNode in="coloredBlur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+        </defs>
+        <circle
+          cx="64"
+          cy="64"
+          r="37"
+          fill="var(--sun-ray)"
+          filter="url(#sun-glow)"
+          opacity="0.45"
+        />
+        <g opacity="0.98">
+          <use href="#ray" transform="rotate(0 64 64)" />
+          <use href="#ray" transform="rotate(22.5 64 64)" />
+          <use href="#ray" transform="rotate(45 64 64)" />
+          <use href="#ray" transform="rotate(67.5 64 64)" />
+          <use href="#ray" transform="rotate(90 64 64)" />
+          <use href="#ray" transform="rotate(112.5 64 64)" />
+          <use href="#ray" transform="rotate(135 64 64)" />
+          <use href="#ray" transform="rotate(157.5 64 64)" />
+          <use href="#ray" transform="rotate(180 64 64)" />
+          <use href="#ray" transform="rotate(202.5 64 64)" />
+          <use href="#ray" transform="rotate(225 64 64)" />
+          <use href="#ray" transform="rotate(247.5 64 64)" />
+          <use href="#ray" transform="rotate(270 64 64)" />
+          <use href="#ray" transform="rotate(292.5 64 64)" />
+          <use href="#ray" transform="rotate(315 64 64)" />
+          <use href="#ray" transform="rotate(337.5 64 64)" />
+        </g>
+        <circle cx="64" cy="64" r="36" fill="var(--sun-core)" />
+        <g clip-path="url(#coreClip)">
+          <circle
+            cx="78"
+            cy="60"
+            r="34"
+            fill="var(--sun-shade)"
+            opacity="0.95"
+          />
+        </g>
+      </svg>
+      <svg
+        id="moon-svg"
+        xmlns="http://www.w3.org/2000/svg"
+        width="32"
+        height="32"
+        viewBox="0 0 119 119"
+      >
+        <defs>
+          <filter id="moon-glow">
+            <feGaussianBlur stdDeviation="4" result="coloredBlur" />
+            <feMerge>
+              <feMergeNode in="coloredBlur" />
+              <feMergeNode in="SourceGraphic" />
+            </feMerge>
+          </filter>
+          <clipPath id="moon-clip">
+            <circle cx="60" cy="60" r="40" />
+          </clipPath>
+        </defs>
+        <circle
+          cx="60"
+          cy="60"
+          r="40"
+          fill="var(--moon-color, #6ba4d9)"
+          filter="url(#moon-glow)"
+        />
+        <circle
+          cx="20"
+          cy="40"
+          r="35"
+          fill="var(--moon-core-color)"
+          clip-path="url(#moon-clip)"
+        />
+        <circle cx="75" cy="50" r="12" fill="var(--moon-crater-color)" />
+        <circle
+          cx="50"
+          cy="70"
+          r="5"
+          fill="var(--moon-crater-color)"
+          opacity="0.8"
+        />
+        <circle
+          cx="65"
+          cy="80"
+          r="3"
+          fill="var(--moon-crater-deep-color)"
+          opacity="0.7"
+        />
+      </svg>
+      <svg
+        width="32"
+        height="32"
+        viewBox="0 0 24 24"
+        id="cloud1-svg"
+        xmlns="http://www.w3.org/2000/svg"
+        class="icon multi-color"
+        style="opacity: 1"
+      >
+        <g transform="scale(-1, 1) translate(-24, 0)">
+          <path
+            id="primary-stroke"
+            d="M21,13a3.76,3.76,0,0,1-.3,1.5A4,4,0,0,1,17,17H6a3,3,0,1,1,1.08-5.79,5,5,0,0,1,9-2.09A4.08,4.08,0,0,1,17,9,4,4,0,0,1,21,13Z"
+            style="
+              fill: var(--cloud-fill-alt);
+              stroke: var(--cloud-stroke);
+              stroke-linecap: round;
+              stroke-linejoin: round;
+              stroke-width: 0.7;
+            "
+          ></path>
+          <path
+            id="tertiary-fill"
+            d="M20.7,14.5A4,4,0,0,1,17,17H6a3,3,0,0,1-2.6-1.5,3,3,0,0,1,3.68-1.29,5,5,0,0,1,9-2.09A4.08,4.08,0,0,1,17,12,4,4,0,0,1,20.7,14.5Z"
+            style="fill: var(--cloud-fill); stroke-width: 2"
+          ></path>
+        </g>
+      </svg>
+      <svg
+        id="cloud2-svg"
+        width="32"
+        height="32"
+        viewBox="0 0 24 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        style="opacity: 1"
+      >
+        <path
+          d="M9.5 6.5C11.6319 6.5 13.3742 8.16775 13.4935 10.2697C14.025 9.79123 14.7285 9.5 15.5 9.5C17.1569 9.5 18.5 10.8431 18.5 12.5C19.6046 12.5 20.5 13.3954 20.5 14.5C20.5 15.6046 19.6046 16.5 18.5 16.5H6.5C4.84315 16.5 3.5 15.1569 3.5 13.5C3.5 12.1925 4.33649 11.0803 5.50352 10.6695C5.50118 10.6133 5.5 10.5568 5.5 10.5C5.5 8.29086 7.29086 6.5 9.5 6.5Z"
+          stroke="var(--cloud-stroke)"
+          fill="var(--cloud-fill)"
+          stroke-width="0.7"
+        />
+      </svg>
+    </div>
+    <div class="initial">
+      <div class="initial-wrapper">
+        <div class="vanilla">
+          <p>V</p>
+          <p>a</p>
+          <p>n</p>
+          <p>i</p>
+          <p>l</p>
+          <p>l</p>
+          <p>a</p>
+        </div>
+        <div class="typescipt">
+          <div class="top-square">
+            <div class="bottom-square"></div>
+            <p>TS</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="overlay">
+      <div class="overlay-wrapper">
+        <p data-spec="lang-scroll"></p>
+        <p data-spec="lang-scroll"></p>
+        <p data-spec="lang-scroll"></p>
+        <p data-spec="lang-scroll"></p>
+        <p data-spec="lang-scroll"></p>
+        <p data-spec="lang-scroll"></p>
+        <p data-spec="lang-scroll"></p>
+      </div>
+    </div>
+    <header>
+      <div class="header-container">
+        <div class="header-left-block">
+          <nav>
+            <a href="">О проекте</a>
+          </nav>
+        </div>
+        <div class="header-right-block">
+          <div class="theme-switcher">
+            <button class="sun-block" data-theme="dark">
+              <svg class="sun">
+                <use href="#sun-svg" />
+              </svg>
+            </button>
+            <button class="moon-block">
+              <svg class="moon">
+                <use href="#moon-svg" />
+              </svg>
+            </button>
+            <svg class="cloud1">
+              <use href="#cloud1-svg" />
+            </svg>
+            <svg class="cloud2">
+              <use href="#cloud1-svg" />
+            </svg>
+            <svg class="cloud3">
+              <use href="#cloud2-svg" />
+            </svg>
+          </div>
+          <div class="lang-switcher">
+            <button class="lang-item" data-lang="ru">
+              <p>RU</p>
+            </button>
+            <button class="lang-item lang-item_hidden" data-lang="en">
+              <p>ENG</p>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div></div>
+    </header>
+    <main>
+      <div class="container">
+        <div class="slider-container">
+          <div class="slider-wrapper">
+            <div class="slider-block_1">
+              <p>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse
+                veritatis possimus ducimus consectetur ipsa, unde quidem facilis
+                tempora distinctio optio at, quo exercitationem ea repellendus
+                alias officiis corrupti quis eius provident recusandae
+                architecto. Delectus suscipit sint beatae ipsum, minima in
+                incidunt quisquam officiis labore quasi aperiam omnis veritatis
+                dicta quaerat ipsa praesentium necessitatibus eligendi, numquam,
+                aliquid odit consequatur laborum sapiente. Sed molestiae atque
+                fugiat fugit amet ex suscipit perspiciatis rem, eveniet odit
+                quisquam nobis laborum ipsa molestias, nemo placeat et. Magni,
+                assumenda esse? Numquam provident atque molestias. Molestias
+                enim quia odit in, asperiores atque vel fugiat corporis officiis
+                odio doloribus eligendi vitae. Architecto libero cumque
+                doloribus perspiciatis in repellat quis voluptates vero quidem!
+                Eos suscipit neque officiis enim veritatis aut nisi ut molestias
+                provident exercitationem laudantium repudiandae sunt accusantium
+                harum temporibus dicta, rem facere optio repellendus maiores
+                voluptatum minima sit et eius. Quisquam officiis vel fuga
+                repellendus suscipit Lorem, ipsum dolor sit amet consectetur
+                adipisicing elit. Esse veritatis possimus ducimus consectetur
+                ipsa, unde quidem facilis tempora distinctio optio at, quo
+                exercitationem ea repellendus alias officiis corrupti quis eius
+                provident recusandae architecto. Delectus suscipit sint beatae
+                ipsum, minima in incidunt quisquam officiis labore quasi aperiam
+                omnis veritatis dicta quaerat ipsa praesentium necessitatibus
+                eligendi, numquam, aliquid odit consequatur laborum sapiente.
+                Sed molestiae atque fugiat fugit amet ex suscipit perspiciatis
+                rem, eveniet odit quisquam nobis laborum ipsa molestias, nemo
+                placeat et. Magni, assumenda esse? Numquam provident atque
+                molestias. Molestias enim quia odit in, asperiores atque vel
+                fugiat corporis officiis odio doloribus eligendi vitae.
+                Architecto libero cumque doloribus perspiciatis in repellat quis
+                voluptates vero quidem! Eos suscipit neque officiis enim
+                veritatis aut nisi ut molestias provident exercitationem
+                laudantium repudiandae sunt accusantium harum temporibus dicta,
+                rem facere optio repellendus maiores voluptatum minima sit et
+                eius. Quisquam officiis vel fuga repellendus suscipit
+              </p>
+            </div>
+            <div class="slider-block_2">
+              <p>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse
+                veritatis possimus ducimus consectetur ipsa, unde quidem facilis
+                tempora distinctio optio at, quo exercitationem ea repellendus
+                alias officiis corrupti quis eius provident recusandae
+                architecto. Delectus suscipit sint beatae ipsum, minima in
+                incidunt quisquam officiis labore quasi aperiam omnis veritatis
+                dicta quaerat ipsa praesentium necessitatibus eligendi, numquam,
+                aliquid odit consequatur laborum sapiente. Sed molestiae atque
+                fugiat fugit amet ex suscipit perspiciatis rem, eveniet odit
+                quisquam nobis laborum ipsa molestias, nemo placeat et. Magni,
+                assumenda esse? Numquam provident atque molestias. Molestias
+                enim quia odit in, asperiores atque vel fugiat corporis officiis
+                odio doloribus eligendi vitae. Architecto libero cumque
+                doloribus perspiciatis in repellat quis voluptates vero quidem!
+                Eos suscipit neque officiis enim veritatis aut nisi ut molestias
+                provident exercitationem laudantium repudiandae sunt accusantium
+                harum temporibus dicta, rem facere optio repellendus maiores
+                voluptatum minima sit et eius. Quisquam officiis vel fuga
+                repellendus suscipit
+              </p>
+            </div>
+            <div class="slider-block_3">
+              <p>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse
+                veritatis possimus ducimus consectetur ipsa, unde quidem facilis
+                tempora distinctio optio at, quo exercitationem ea repellendus
+                alias officiis corrupti quis eius provident recusandae
+                architecto. Delectus suscipit sint beatae ipsum, minima in
+                incidunt quisquam officiis labore quasi aperiam omnis veritatis
+                dicta quaerat ipsa praesentium necessitatibus eligendi, numquam,
+                aliquid odit consequatur laborum sapiente. Sed molestiae atque
+                fugiat fugit amet ex suscipit perspiciatis rem, eveniet odit
+                quisquam nobis laborum ipsa molestias, nemo placeat et. Magni,
+                assumenda esse? Numquam provident atque molestias. Molestias
+                enim quia odit in, asperiores atque vel fugiat corporis officiis
+                odio doloribus eligendi vitae. Architecto libero cumque
+                doloribus perspiciatis in repellat quis voluptates vero quidem!
+                Eos suscipit neque officiis enim veritatis aut nisi ut molestias
+                provident exercitationem laudantium repudiandae sunt accusantium
+                harum temporibus dicta, rem facere optio repellendus maiores
+                voluptatum minima sit et eius. Quisquam officiis vel fuga
+                repellendus suscipit
+              </p>
+            </div>
+            <div class="slider-block_4">
+              <p>
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse
+                veritatis possimus ducimus consectetur ipsa, unde quidem facilis
+                tempora distinctio optio at, quo exercitationem ea repellendus
+                alias officiis corrupti quis eius provident recusandae
+                architecto. Delectus suscipit sint beatae ipsum, minima in
+                incidunt quisquam officiis labore quasi aperiam omnis veritatis
+                dicta quaerat ipsa praesentium necessitatibus eligendi, numquam,
+                aliquid odit consequatur laborum sapiente. Sed molestiae atque
+                fugiat fugit amet ex suscipit perspiciatis rem, eveniet odit
+                quisquam nobis laborum ipsa molestias, nemo placeat et. Magni,
+                assumenda esse? Numquam provident atque molestias. Molestias
+                enim quia odit in, asperiores atque vel fugiat corporis officiis
+                odio doloribus eligendi vitae. Architecto libero cumque
+                doloribus perspiciatis in repellat quis voluptates vero quidem!
+                Eos suscipit neque officiis enim veritatis aut nisi ut molestias
+                provident exercitationem laudantium repudiandae sunt accusantium
+                harum temporibus dicta, rem facere optio repellendus maiores
+                voluptatum minima sit et eius. Quisquam officiis vel fuga
+                repellendus suscipit
+              </p>
+            </div>
+            <div class="slider-nav">
+              <div class="slider-button"></div>
+              <div class="slider-button"></div>
+              <div class="slider-button"></div>
+              <div class="slider-button"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <footer></footer>
+  </body>
+</html>

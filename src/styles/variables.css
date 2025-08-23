@@ -1,0 +1,26 @@
+:root {
+  --primary-color: #212121;
+  --secondary-color: #323232;
+  --shadow-color: #094547;
+  --text-color: #a1a0a8;
+
+  --cloud-fill: #a3a3a3;
+  --cloud-fill-alt: #636363;
+  --cloud-stroke: #000;
+
+  --moon-core-color: #5c91bf;
+  --moon-color: #6ba4d9;
+  --moon-crater-color: #5c91bf;
+  --moon-crater-deep-color: #ffffffff;
+
+  --sun-ray: #ffe071;
+  --sun-core: #ffc23b;
+  --sun-shade: #ffb02a;
+}
+
+[data-theme="light"] {
+  --primary-color: #fcf6f5;
+  --secondary-color: #83a2d4;
+  --shadow-color: #dce2f0;
+  --text-color: #59586c;
+}
