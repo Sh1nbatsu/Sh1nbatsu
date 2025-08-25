@@ -4,11 +4,11 @@
   flex-direction: column;
   align-items: center;
   justify-items: center;
-  border-radius: 10px;
-  overflow: hidden;
+  border-radius: 11px;
+  /* overflow: visible; */
   height: 45px;
   position: relative;
-  z-index: 1;
+  /* z-index: 2; */
   transition: height 200ms;
   transition: background-color 200ms;
   width: 60px;
@@ -31,8 +31,10 @@
   display: flex;
   justify-content: center;
   background: var(--secondary-color);
-  content: "";
   position: absolute;
+  z-index: 3;
+  transform: translateZ(0);
+  height: 45px;
 }
 
 .lang-item:hover {
@@ -41,7 +43,7 @@
 
 .lang-item_hidden {
   bottom: 0;
-  z-index: -1;
+  z-index: 2;
 }
 
 .lang-item p {

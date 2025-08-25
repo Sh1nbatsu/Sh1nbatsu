@@ -1,5 +1,4 @@
 import triggerScroll from "./lang-charset";
-import ClickChoke from "./click-choke";
 
 export default async function animateOverlay(
   lang: string,

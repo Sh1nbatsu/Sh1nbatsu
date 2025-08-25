@@ -15,10 +15,10 @@ function scrollAlphabet(
 ) {
   const charArr: string[] = [];
 
+  const currArr = engAlphabet.replace(firstChar + lastChar, "");
+
   for (let i = 0; i < scrollAmount - 2; i++) {
-    charArr.push(
-      engAlphabet[getRandomInt(engAlphabet.length)].toLocaleLowerCase()
-    );
+    charArr.push(currArr[getRandomInt(engAlphabet.length)].toLocaleLowerCase());
   }
 
   charArr.push(lastChar);
@@ -56,6 +56,10 @@ export function triggerScroll(
       completeCharSet.push(scrollAlphabet(8, en[index], ru[index]));
     });
   }
+
+  completeCharSet[0] = completeCharSet[0].map((item) => {
+    return item.toUpperCase();
+  });
 
   console.log(completeCharSet);
 

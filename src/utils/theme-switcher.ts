@@ -1,4 +1,4 @@
-import ClickChoke from "./click-choke";
+import Throttle from "./throttle";
 
 export default function themeSwitcher() {
   const moonButton = document.querySelector<HTMLElement>(".moon-block");
@@ -7,23 +7,23 @@ export default function themeSwitcher() {
 
   let currentTheme = document.documentElement.getAttribute("data-theme");
 
-  const clickChoker = new ClickChoke(300);
+  const throttle = new Throttle(400);
 
   if (sunButton && moonButton) {
     sunButton.addEventListener("click", () => {
-      if (currentTheme === "dark" && clickChoker.isReady()) {
+      if (currentTheme === "dark" && throttle.isReady()) {
         localStorage.setItem("theme", "light");
         document.documentElement.setAttribute("data-theme", "light");
         currentTheme = document.documentElement.getAttribute("data-theme");
-        clickChoker.triggerChoke();
+        throttle.triggerChoke();
       }
     });
     moonButton.addEventListener("click", () => {
-      if (currentTheme === "light" && clickChoker.isReady()) {
+      if (currentTheme === "light" && throttle.isReady()) {
         localStorage.setItem("theme", "dark");
         document.documentElement.setAttribute("data-theme", "dark");
         currentTheme = document.documentElement.getAttribute("data-theme");
-        clickChoker.triggerChoke();
+        throttle.triggerChoke();
       }
     });
   }

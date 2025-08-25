@@ -1,16 +1,22 @@
-@import "./initial.css";
+@import "./initial-overlay.css";
 @import "./variables.css";
 @import "./theme-switcher.css";
 @import "./lang-switcher.css";
-@import "./overlay.css";
+@import "./lang-overlay.css";
 @import "./slider.css";
+@import "./slider-blocks.css";
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: Google Sans Code, sans-serif;
-  transition: all 200ms;
+  /* transition: all 200ms; */
+}
+
+img {
+  height: 100%;
+  width: 100%;
 }
 
 a {
@@ -18,13 +24,13 @@ a {
   color: inherit;
 }
 
-.no-initial header {
+/* .no-initial header {
   animation: none;
 }
 
 .no-initial main {
   animation: none;
-}
+} */
 
 .no-initial .initial {
   display: none;
@@ -41,16 +47,23 @@ button {
 body {
   background: var(--primary-color);
   color: var(--text-color);
-  /* overflow: hidden; */
 }
 
 header {
   padding: 20px 0;
-  animation: fadein 2200ms forwards;
+  z-index: 100;
 }
 
-main {
-  animation: fadein 2200ms forwards;
+header > * {
+  animation: fadein 700ms forwards;
+  opacity: 0;
+  animation-delay: 300ms;
+}
+
+main > * {
+  animation: fadein 700ms forwards;
+  opacity: 0;
+  animation-delay: 300ms;
 }
 
 .header-container {
@@ -89,7 +102,7 @@ main {
 }
 
 .container {
-  max-width: 1200px;
+  max-width: 1400px;
   margin: 0 auto;
   padding: 0 20px;
 }
@@ -107,9 +120,6 @@ p {
 
 @keyframes fadein {
   0% {
-    opacity: 0;
-  }
-  80% {
     opacity: 0;
   }
   100% {

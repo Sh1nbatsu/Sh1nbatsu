@@ -47,17 +47,6 @@
   transition: filter 200ms ease-out;
 }
 
-.slider {
-  width: 40px;
-  height: 40px;
-  content: "";
-  background-color: rgba(13, 115, 119, 0.5);
-  border-radius: 999px;
-  position: absolute;
-  translate: -24px 0;
-  z-index: -1;
-}
-
 .cloud1 {
   transition: translate 300ms ease-out;
   top: -3px;

@@ -13,7 +13,7 @@
       (function () {
         try {
           if (localStorage.getItem("animationPlayed") === "true") {
-            document.documentElement.classList.add("no-initial");
+            // document.documentElement.classList.add("no-initial");
           }
           const savedTheme = localStorage.getItem("theme");
           if (savedTheme) {
@@ -34,7 +34,7 @@
     <link rel="stylesheet" href="./src/styles/main.css" />
     <script type="module" src="./src/index.ts"></script>
   </head>
-  <body data-lang="en">
+  <body data-lang="ru">
     <div class="svg-container">
       <svg
         id="sun-svg"
@@ -273,48 +273,13 @@
       <div class="container">
         <div class="slider-container">
           <div class="slider-wrapper">
-            <div class="slider-block_1">
-              <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse
-                veritatis possimus ducimus consectetur ipsa, unde quidem facilis
-                tempora distinctio optio at, quo exercitationem ea repellendus
-                alias officiis corrupti quis eius provident recusandae
-                architecto. Delectus suscipit sint beatae ipsum, minima in
-                incidunt quisquam officiis labore quasi aperiam omnis veritatis
-                dicta quaerat ipsa praesentium necessitatibus eligendi, numquam,
-                aliquid odit consequatur laborum sapiente. Sed molestiae atque
-                fugiat fugit amet ex suscipit perspiciatis rem, eveniet odit
-                quisquam nobis laborum ipsa molestias, nemo placeat et. Magni,
-                assumenda esse? Numquam provident atque molestias. Molestias
-                enim quia odit in, asperiores atque vel fugiat corporis officiis
-                odio doloribus eligendi vitae. Architecto libero cumque
-                doloribus perspiciatis in repellat quis voluptates vero quidem!
-                Eos suscipit neque officiis enim veritatis aut nisi ut molestias
-                provident exercitationem laudantium repudiandae sunt accusantium
-                harum temporibus dicta, rem facere optio repellendus maiores
-                voluptatum minima sit et eius. Quisquam officiis vel fuga
-                repellendus suscipit Lorem, ipsum dolor sit amet consectetur
-                adipisicing elit. Esse veritatis possimus ducimus consectetur
-                ipsa, unde quidem facilis tempora distinctio optio at, quo
-                exercitationem ea repellendus alias officiis corrupti quis eius
-                provident recusandae architecto. Delectus suscipit sint beatae
-                ipsum, minima in incidunt quisquam officiis labore quasi aperiam
-                omnis veritatis dicta quaerat ipsa praesentium necessitatibus
-                eligendi, numquam, aliquid odit consequatur laborum sapiente.
-                Sed molestiae atque fugiat fugit amet ex suscipit perspiciatis
-                rem, eveniet odit quisquam nobis laborum ipsa molestias, nemo
-                placeat et. Magni, assumenda esse? Numquam provident atque
-                molestias. Molestias enim quia odit in, asperiores atque vel
-                fugiat corporis officiis odio doloribus eligendi vitae.
-                Architecto libero cumque doloribus perspiciatis in repellat quis
-                voluptates vero quidem! Eos suscipit neque officiis enim
-                veritatis aut nisi ut molestias provident exercitationem
-                laudantium repudiandae sunt accusantium harum temporibus dicta,
-                rem facere optio repellendus maiores voluptatum minima sit et
-                eius. Quisquam officiis vel fuga repellendus suscipit
-              </p>
+            <div class="slider-block active" id="slider-button_1">
+              <img src="./pfp.jpg" alt="pfp" />
+              <div class="profession"></div>
+              <div class="name-top"></div>
+              <div class="name-bottom"></div>
             </div>
-            <div class="slider-block_2">
+            <div class="slider-block" id="slider-button_2">
               <p>
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse
                 veritatis possimus ducimus consectetur ipsa, unde quidem facilis
@@ -337,7 +302,7 @@
                 repellendus suscipit
               </p>
             </div>
-            <div class="slider-block_3">
+            <div class="slider-block" id="slider-button_3">
               <p>
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse
                 veritatis possimus ducimus consectetur ipsa, unde quidem facilis
@@ -360,7 +325,7 @@
                 repellendus suscipit
               </p>
             </div>
-            <div class="slider-block_4">
+            <div class="slider-block" id="slider-button_4">
               <p>
                 Lorem, ipsum dolor sit amet consectetur adipisicing elit. Esse
                 veritatis possimus ducimus consectetur ipsa, unde quidem facilis
@@ -384,10 +349,10 @@
               </p>
             </div>
             <div class="slider-nav">
-              <div class="slider-button"></div>
-              <div class="slider-button"></div>
-              <div class="slider-button"></div>
-              <div class="slider-button"></div>
+              <div class="slider-button active" id="slider-content_1"></div>
+              <div class="slider-button" id="slider-content_1"></div>
+              <div class="slider-button" id="slider-content_1"></div>
+              <div class="slider-button" id="slider-content_1"></div>
             </div>
           </div>
         </div>

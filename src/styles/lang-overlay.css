@@ -6,7 +6,7 @@
   height: 100%;
   clear: both;
   background-color: var(--primary-color);
-  z-index: 2;
+  z-index: 10;
   display: flex;
   pointer-events: none;
   transition: opacity 400ms;
@@ -17,6 +17,7 @@
   opacity: 1;
   animation: animateOut 700ms forwards;
   animation-delay: 3500ms;
+  /* 3500 */
 }
 
 .overlay-wrapper {

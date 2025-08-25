@@ -1,6 +1,8 @@
 // Безумное спагетти, но я не собираюсь добавлять больше двух языков, да и для этого нужно было бы перерабатывать верстку и стили полностью
 import animateOverlay from "./lang-overlay";
 
+import Throttle from "./throttle";
+
 const langScrollItems = document.querySelectorAll<HTMLElement>(
   "[data-spec='lang-scroll']"
 );
@@ -14,6 +16,8 @@ export default function langSwitcher() {
     "div [data-lang='en']"
   ) as HTMLElement;
 
+  const throttle = new Throttle(250);
+
   const langSwitcher = document.querySelector<HTMLElement>(".lang-switcher");
 
   let currentLang = document.body.getAttribute("data-lang");
@@ -24,7 +28,7 @@ export default function langSwitcher() {
 
   langItems.forEach((item) => {
     if (item.getAttribute("data-lang") !== currentLang) {
-      item.style.zIndex = "-1";
+      // item.style.zIndex = "2";
       item.classList.add("lang-item_hidden");
     } else {
       item.classList.remove("lang-item_hidden");
@@ -35,12 +39,13 @@ export default function langSwitcher() {
     langItems.forEach((item) => {
       item.addEventListener("click", () => {
         const dataLang = item.getAttribute("data-lang");
-        if (!isOpen) {
+        if (!isOpen && throttle.isReady()) {
           langOpen();
-        } else if (currentLang === dataLang && isOpen) {
+        } else if (currentLang === dataLang && isOpen && throttle.isReady()) {
           langClose();
-        } else if (currentLang !== dataLang && isOpen) {
+        } else if (currentLang !== dataLang && isOpen && throttle.isReady()) {
           langChange();
+          throttle.triggerChoke();
         }
       });
     });
@@ -88,8 +93,8 @@ export default function langSwitcher() {
       console.log(toChange, typeof toChange);
 
       if (toChange && toBeChanged) {
-        toChange.style.zIndex = "1";
-        toBeChanged.style.zIndex = "-1";
+        toChange.style.zIndex = "3";
+        toBeChanged.style.zIndex = "2";
         document.body.setAttribute(
           "data-lang",
           `${toChange.getAttribute("data-lang")}`
