@@ -4,7 +4,6 @@
 <h1 align="center">o/, I'm Sh1nbatsu</h1>
 <h3 align="center">A passionate frontend developer</h3>
 
-<h3 align="left">Telegram: @cidtimtt</h3>
 <p align="left">
 </p>
 
