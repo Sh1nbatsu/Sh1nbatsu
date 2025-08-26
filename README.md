@@ -1,5 +1,7 @@
 <div style="margin: auto">
+<p align="center">
 <img src="https://github.com/Sh1nbatsu/Sh1nbatsu/blob/main/public/pfp.jpg" alt="pfp" height="600px" width="600px">
+</p>
 </div>
 <h1 align="center">o/, I'm Sh1nbatsu</h1>
 <h3 align="center">A passionate frontend developer</h3>
